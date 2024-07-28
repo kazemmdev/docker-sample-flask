@@ -2,6 +2,7 @@
 This repository contains a Dockerized Flask application with two main functionalities:
 
 1.	Compute Fibonacci sequence up to a given number.
+2.	Predict a value using a simple TensorFlow neural network model.
 
 
 ### Getting Started
@@ -14,7 +15,7 @@ Ensure you have the following installed on your system:
 * Docker
 * curl (optional, for testing the API via the command line)
 
-## EX1: Fibonacci Example
+## EXAMPLE_1: Fibonacci Example
 
 1.	Build the Docker image:
 
@@ -51,6 +52,37 @@ Expected Response:
         {"Fibonacci Numbers": 21},
         {"Fibonacci Numbers": 34}
     ]
+}
+```
+
+
+## EXAMPLE_2: TensorFlow Prediction Example
+
+1.	Build the Docker image:
+
+```sh
+cd tensorflow
+docker build -t flask-api .
+```
+
+2. Run the Docker container:
+
+```sh
+docker run -p 4000:4000 flask-api
+```
+
+3. Test the API using curl:
+```sh
+curl -X POST http://localhost:4000 -H "Content-Type: application/json" -d '{"number": 1}'
+```
+
+Expected Response:
+
+```json
+{
+    "input": 1,
+    "prediction": 0.48668569326400757,
+    "status": "success"
 }
 ```
 
